@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using Abp.Domain.Entities;
 using HS.Farm.Core;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace HS.Farm.Application.Dto
 {
     [AutoMap(typeof(BanSanPham))]
-    public class BanSanPhamDto: EntityDto
+    public class BanSanPhamDto: FullAuditedEntityDto, IMayHaveTenant
     {
         public DateTime NgayBan { get; set; }
         [MaxLength(50)]
@@ -21,5 +22,6 @@ namespace HS.Farm.Application.Dto
         public float CongThuong { get; set; }
         [Required]
         public float ThanhTien { get; set; }
+        public int? TenantId { get; set; }
     }
 }

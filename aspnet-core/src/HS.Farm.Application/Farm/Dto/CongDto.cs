@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using Abp.Domain.Entities;
 using HS.Farm.Core;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace HS.Farm.Application.Dto
 {
     [AutoMap(typeof(Cong))]
-    public class CongDto : EntityDto
+    public class CongDto : FullAuditedEntityDto, IMayHaveTenant
     {
         [MaxLength(50)]
         [Required]
@@ -20,5 +21,6 @@ namespace HS.Farm.Application.Dto
         public float SoCongBonPhan { get; set; }
         public float SoNgay { get; set; }
         public float DonGia { get; set; }
+        public int? TenantId { get; set; }
     }
 }

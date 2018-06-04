@@ -11,32 +11,32 @@ namespace HS.Farm.EntityFrameworkCore
     public class FarmDbContext : AbpZeroDbContext<Tenant, Role, User, FarmDbContext>
     {
         /* Define a DbSet for each entity of the application */
-        public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<BanSanPham> BanSanPhams { get; set; }
-        public virtual DbSet<CayTrong> CayTrongs { get; set; }
-        public virtual DbSet<ChatLuongSanPham> ChatLuongSanPhams { get; set; }
-        public virtual DbSet<ChuHo> ChuHos { get; set; }
-        public virtual DbSet<Cong> Congs { get; set; }
-        public virtual DbSet<DatCanhTac> DatCanhTacs { get; set; }
-        public virtual DbSet<HoatDongCanhTacBonPhan> HoatDongCanhtacBonPhans { get; set; }
-        public virtual DbSet<HoatDongCanhTacPhunThuoc> HoatDongCanhtacPhunThuocs { get; set; }
-        public virtual DbSet<HoatDongCanhTacTuoiNuoc> HoatDongCanhtacTuoiNuocs { get; set; }
-        public virtual DbSet<HoatDongCanhTacVeSinhVuon> HoatDongCanhtacVeSinhVuons { get; set; }
-        public virtual DbSet<LaoDongThueNgoai> LaoDongThueNgoais { get; set; }
-        public virtual DbSet<NhienLieu> NhienLieus { get; set; }
-        public virtual DbSet<PhanBon> PhanBons { get; set; }
-        public virtual DbSet<PhuongPhapCanhTac> PhuongPhapCanhTacs { get; set; }
-        public virtual DbSet<ThuChi> ThuChis { get; set; }
-        public virtual DbSet<ThuHoach> ThuHoachs { get; set; }
-        public virtual DbSet<ThuocBVTV> ThuocBVTVs { get; set; }
-        public virtual DbSet<ChiTietChuHoDatCanhTac> ChiTietChuHoDatCanhTacs { get; set; }
-        public virtual DbSet<ChiTietChuHoLaoDongThueNgoai> ChiTietChuHoLaoDongThueNgoais { get; set; }
-        public virtual DbSet<ChiTietHoatDongCanhTacBonPhan> ChiTietHoatDongCanhtacBonPhans { get; set; }
-        public virtual DbSet<ChiTietHoatDongCanhTacPhunThuoc> ChiTietHoatDongCanhtacPhunThuocs { get; set; }
-        public virtual DbSet<ChiTietHoatDongCanhTacTuoiNuoc> ChiTietHoatDongCanhtacTuoiNuocs { get; set; }
-        public virtual DbSet<ChiTietHoatDongCanhTacVeSinhVuon> ChiTietHoatDongCanhtacVeSinhVuons { get; set; }
-        public virtual DbSet<ChiTietThuChi> ChiTietThuChis { get; set; }
-        public virtual DbSet<ChiTietThuHoach> ChiTietThuHoachs { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<BanSanPham> BanSanPhams { get; set; }
+        public DbSet<CayTrong> CayTrongs { get; set; }
+        public DbSet<ChatLuongSanPham> ChatLuongSanPhams { get; set; }
+        public DbSet<ChuHo> ChuHos { get; set; }
+        public DbSet<Cong> Congs { get; set; }
+        public DbSet<DatCanhTac> DatCanhTacs { get; set; }
+        public DbSet<HoatDongCanhTacBonPhan> HoatDongCanhtacBonPhans { get; set; }
+        public DbSet<HoatDongCanhTacPhunThuoc> HoatDongCanhtacPhunThuocs { get; set; }
+        public DbSet<HoatDongCanhTacTuoiNuoc> HoatDongCanhtacTuoiNuocs { get; set; }
+        public DbSet<HoatDongCanhTacVeSinhVuon> HoatDongCanhtacVeSinhVuons { get; set; }
+        public DbSet<LaoDongThueNgoai> LaoDongThueNgoais { get; set; }
+        public DbSet<NhienLieu> NhienLieus { get; set; }
+        public DbSet<PhanBon> PhanBons { get; set; }
+        public DbSet<PhuongPhapCanhTac> PhuongPhapCanhTacs { get; set; }
+        public DbSet<ThuChi> ThuChis { get; set; }
+        public DbSet<ThuHoach> ThuHoachs { get; set; }
+        public DbSet<ThuocBVTV> ThuocBVTVs { get; set; }
+        public DbSet<ChiTietChuHoDatCanhTac> ChiTietChuHoDatCanhTacs { get; set; }
+        public DbSet<ChiTietChuHoLaoDongThueNgoai> ChiTietChuHoLaoDongThueNgoais { get; set; }
+        public DbSet<ChiTietHoatDongCanhTacBonPhan> ChiTietHoatDongCanhtacBonPhans { get; set; }
+        public DbSet<ChiTietHoatDongCanhTacPhunThuoc> ChiTietHoatDongCanhtacPhunThuocs { get; set; }
+        public DbSet<ChiTietHoatDongCanhTacTuoiNuoc> ChiTietHoatDongCanhtacTuoiNuocs { get; set; }
+        public DbSet<ChiTietHoatDongCanhTacVeSinhVuon> ChiTietHoatDongCanhtacVeSinhVuons { get; set; }
+        public DbSet<ChiTietThuChi> ChiTietThuChis { get; set; }
+        public DbSet<ChiTietThuHoach> ChiTietThuHoachs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Person>().ToTable("StsPeople");

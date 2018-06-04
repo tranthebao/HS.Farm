@@ -28,15 +28,15 @@ namespace HS.Farm
             FarmLocalizationConfigurer.Configure(Configuration.Localization);
 
             // Enable this line to create a multi-tenant application.
-            Configuration.MultiTenancy.IsEnabled = FarmConsts.MultiTenancyEnabled;
+            Configuration.MultiTenancy.IsEnabled = false;// FarmConsts.MultiTenancyEnabled;
 
             // Configure roles
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);
 
             Configuration.Settings.Providers.Add<AppSettingProvider>();
 
-            Configuration.Authorization.IsEnabled = true;
-            Configuration.EntityHistory.IsEnabled = true;
+            //Configuration.Authorization.IsEnabled = true;
+            //Configuration.EntityHistory.IsEnabled = true;
 
         }
 
