@@ -34,6 +34,10 @@ import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 import { MaterialInput } from '@shared/directives/material-input.directive';
 
+import { CayTrongComponent } from '@app/Farm/caytrong/caytrongs.component';
+import { CreateCayTrongComponent } from './Farm/caytrong/create-caytrong/create-caytrong.component';
+import { EditCayTrongComponent } from './Farm/caytrong/edit-caytrong/edit-caytrong.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -53,7 +57,11 @@ import { MaterialInput } from '@shared/directives/material-input.directive';
         SideBarUserAreaComponent,
         SideBarNavComponent,
         SideBarFooterComponent,
-        RightSideBarComponent
+        RightSideBarComponent,
+
+        CayTrongComponent,
+		CreateCayTrongComponent,
+		EditCayTrongComponent,
     
     ],
     imports: [

@@ -1,9 +1,9 @@
-﻿<div bsModal #editTenantModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+﻿<div bsModal #editCayTrongModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="editUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
     <div class="modal-dialog">
 
         <div #modalContent class="modal-content">
 
-            <form *ngIf="active" #editTenantForm="ngForm" id="frm_edit_tenant" novalidate (ngSubmit)="save()">
+            <form *ngIf="active" #editCayTrongForm="ngForm" id="frm_edit_tenant" novalidate (ngSubmit)="save()">
 
                 <div class="modal-header">
                     <button type="button" class="close" (click)="close()" aria-label="Close">
@@ -37,7 +37,7 @@
 
                 <div class="modal-footer">
                     <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
-                    <button [disabled]="!editTenantForm.form.valid || saving" type="submit" class="btn btn-primary blue">{{l("Save")}}</button>
+                    <button [disabled]="!editCayTrongForm.form.valid || saving" type="submit" class="btn btn-primary blue">{{l("Save")}}</button>
                 </div>
 
             </form>

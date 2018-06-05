@@ -1,48 +1,48 @@
 ﻿import { Component, Injector, ViewChild } from '@angular/core';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
-import { TenantServiceProxy, TenantDto, PagedResultDtoOfTenantDto } from '@shared/service-proxies/service-proxies';
+import { CayTrongServiceProxy, CayTrongDto, PagedResultDtoOfCayTrongDto } from '@shared/service-proxies/service-proxies';
 
 import { PagedListingComponentBase, PagedRequestDto } from "shared/paged-listing-component-base";
-import { EditTenantComponent } from "app/tenants/edit-tenant/edit-tenant.component";
-import { CreateTenantComponent } from "app/tenants/create-tenant/create-tenant.component";
+import { EditCayTrongComponent } from "app/Farm/caytrong/edit-caytrong/edit-caytrong.component";
+import { CreateCayTrongComponent } from "app/Farm/caytrong/create-caytrong/create-caytrong.component";
 
 @Component({
-    templateUrl: './tenants.component.html',
+    templateUrl: './caytrongs.component.html',
     animations: [appModuleAnimation()]
 })
-export class TenantsComponent extends PagedListingComponentBase<TenantDto> {
+export class CayTrongComponent extends PagedListingComponentBase<CayTrongDto> {
 
-    @ViewChild('createTenantModal') createTenantModal: CreateTenantComponent;
-    @ViewChild('editTenantModal') editTenantModal: EditTenantComponent;
+    @ViewChild('createCayTrongModal') createCayTrongModal: CreateCayTrongComponent;
+    @ViewChild('editCayTrongModal') editCayTrongModal: EditCayTrongComponent;
 
-    tenants: TenantDto[] = [];
+    caytrongs: CayTrongDto[] = [];
 
     constructor(
         injector: Injector,
-        private _tenantService: TenantServiceProxy
+        private _cayTrongService: CayTrongServiceProxy
     ) {
         super(injector);
     }
 
     list(request:PagedRequestDto, pageNumber:number, finishedCallback: Function): void {
-        this._tenantService.getAll(request.skipCount, request.maxResultCount)
+        this._cayTrongService.getAll(request.skipCount, request.maxResultCount)
             .finally(()=>{
                 finishedCallback();
             })
-            .subscribe((result:PagedResultDtoOfTenantDto)=>{
-				this.tenants = result.items;
+            .subscribe((result:PagedResultDtoOfCayTrongDto)=>{
+				this.caytrongs = result.items;
 				this.showPaging(result, pageNumber);
             });
     }
 
-    delete(tenant: TenantDto): void {
+    delete(caytrong: CayTrongDto): void {
 		abp.message.confirm(
-			"Delete tenant '"+ tenant.name +"'?",
+			"Delete caytrong '"+ caytrong.name +"'?",
 			(result:boolean) => {
 				if(result) {
-					this._tenantService.delete(tenant.id)
+					this._cayTrongService.delete(caytrong.id)
 						.finally(() => {
-					        abp.notify.info("Deleted tenant: " + tenant.name );
+					        abp.notify.info("Deleted caytrong: " + caytrong.name );
 							this.refresh();
 						})
 						.subscribe(() => { });
@@ -52,11 +52,11 @@ export class TenantsComponent extends PagedListingComponentBase<TenantDto> {
     }
 
     // Show modals
-    createTenant(): void {
-        this.createTenantModal.show();
+    createcaytrong(): void {
+        this.createCayTrongModal.show();
     }
 
-    editTenant(tenant:TenantDto): void{
-        this.editTenantModal.show(tenant.id);
+    editcaytrong(caytrong:CayTrongDto): void{
+        this.editCayTrongModal.show(caytrong.id);
     }
 }

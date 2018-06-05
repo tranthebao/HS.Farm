@@ -3,7 +3,7 @@
         <div class="card main-content">
             <div class="header">
                 <h2>
-                    {{l("Tenants")}}
+                    {{l("caytrongs")}}
                 </h2>
                 <ul class="header-dropdown m-r--5">
                     <i class="fa fa-spin fa-spinner" *ngIf="isTableLoading"></i>
@@ -31,20 +31,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let tenant of tenants | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems }">
-                            <td>{{tenant.tenancyName}}</td>
-                            <td>{{tenant.name}}</td>
+                        <tr *ngFor="let caytrong of caytrongs | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: pageNumber, totalItems: totalItems }">
+                            <td>{{caytrong.tenancyName}}</td>
+                            <td>{{caytrong.name}}</td>
                             <td align="center">
-                                <i class="material-icons" *ngIf="tenant.isActive" style="color:green;">check_box</i>
-                                <i class="material-icons" *ngIf="!tenant.isActive" style="color:red;">indeterminate_check_box</i>
+                                <i class="material-icons" *ngIf="caytrong.isActive" style="color:green;">check_box</i>
+                                <i class="material-icons" *ngIf="!caytrong.isActive" style="color:red;">indeterminate_check_box</i>
                             </td>
                             <td class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">menu</i>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="editTenant(tenant)"><i class="material-icons">create</i>Edit</a></li>
-                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="delete(tenant)"><i class="material-icons">delete_sweep</i>Delete</a></li>
+                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="editcaytrong(caytrong)"><i class="material-icons">create</i>Edit</a></li>
+                                    <li><a href="javascript:void(0);" class="waves-effect waves-block" (click)="delete(caytrong)"><i class="material-icons">delete_sweep</i>Delete</a></li>
                                 </ul>
                             </td>
                         </tr>
@@ -54,7 +54,7 @@
                 <div class="text-align: center;" *ngIf="totalItems > pageSize">
                     <pagination-controls (pageChange)="getDataPage($event)" id="server"></pagination-controls>
                 </div>
-                <button type="button" data-toggle="modal" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" (click)="createTenant()">
+                <button type="button" data-toggle="modal" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right" (click)="createcaytrong()">
                     <i class="material-icons">add</i>
                 </button>
             </div>
@@ -62,5 +62,5 @@
     </div>
 </div>
 
-<create-tenant-modal #createTenantModal (modalSave)="refresh()"></create-tenant-modal>
-<edit-tenant-modal #editTenantModal (modalSave)="refresh()"></edit-tenant-modal>
+<create-caytrong-modal #createCayTrongModal (modalSave)="refresh()"></create-caytrong-modal>
+<edit-caytrong-modal #editCayTrongModal (modalSave)="refresh()"></edit-caytrong-modal>
