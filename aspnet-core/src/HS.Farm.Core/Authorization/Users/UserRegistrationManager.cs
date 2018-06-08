@@ -11,37 +11,55 @@ using Abp.Runtime.Session;
 using Abp.UI;
 using HS.Farm.Authorization.Roles;
 using HS.Farm.MultiTenancy;
+using Abp.Configuration;
+using Abp.Notifications;
 
 namespace HS.Farm.Authorization.Users
 {
-    public class UserRegistrationManager : DomainService
+    public class UserRegistrationManager : AbpZeroTemplateDomainServiceBase
     {
         public IAbpSession AbpSession { get; set; }
 
         private readonly TenantManager _tenantManager;
         private readonly UserManager _userManager;
         private readonly RoleManager _roleManager;
+        private readonly IUserEmailer _userEmailer;
+        private readonly INotificationSubscriptionManager _notificationSubscriptionManager;
+        private readonly IAppNotifier _appNotifier;
+        private readonly IUserPolicy _userPolicy;
         private readonly IPasswordHasher<User> _passwordHasher;
 
         public UserRegistrationManager(
             TenantManager tenantManager,
             UserManager userManager,
             RoleManager roleManager,
+            IUserEmailer userEmailer,
+            INotificationSubscriptionManager notificationSubscriptionManager,
+            IAppNotifier appNotifier,
+            IUserPolicy userPolicy,
             IPasswordHasher<User> passwordHasher)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
             _roleManager = roleManager;
+            _userEmailer = userEmailer;
+            _notificationSubscriptionManager = notificationSubscriptionManager;
+            _appNotifier = appNotifier;
+            _userPolicy = userPolicy;
             _passwordHasher = passwordHasher;
 
             AbpSession = NullAbpSession.Instance;
         }
 
-        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed)
+        public async Task<User> RegisterAsync(string name, string surname, string emailAddress, string userName, string plainPassword, bool isEmailConfirmed, string emailActivationLink)
         {
             CheckForTenant();
+            CheckSelfRegistrationIsEnabled();
 
             var tenant = await GetActiveTenantAsync();
+            var isNewRegisteredUserActiveByDefault = await SettingManager.GetSettingValueAsync<bool>(AppSettings.UserManagement.IsNewRegisteredUserActiveByDefault);
+
+            await _userPolicy.CheckMaxUserCountAsync(tenant.Id);
 
             var user = new User
             {
@@ -49,7 +67,7 @@ namespace HS.Farm.Authorization.Users
                 Name = name,
                 Surname = surname,
                 EmailAddress = emailAddress,
-                IsActive = true,
+                IsActive = isNewRegisteredUserActiveByDefault,
                 UserName = userName,
                 IsEmailConfirmed = isEmailConfirmed,
                 Roles = new List<UserRole>()
@@ -67,6 +85,17 @@ namespace HS.Farm.Authorization.Users
             CheckErrors(await _userManager.CreateAsync(user));
             await CurrentUnitOfWork.SaveChangesAsync();
 
+            if (!user.IsEmailConfirmed)
+            {
+                user.SetNewEmailConfirmationCode();
+                await _userEmailer.SendEmailActivationLinkAsync(user, emailActivationLink);
+            }
+
+            //Notifications
+            await _notificationSubscriptionManager.SubscribeToAllAvailableNotificationsAsync(user.ToUserIdentifier());
+            await _appNotifier.WelcomeToTheApplicationAsync(user);
+            await _appNotifier.NewUserRegisteredAsync(user);
+
             return user;
         }
 
@@ -76,6 +105,24 @@ namespace HS.Farm.Authorization.Users
             {
                 throw new InvalidOperationException("Can not register host users!");
             }
+        }
+
+        private void CheckSelfRegistrationIsEnabled()
+        {
+            if (!SettingManager.GetSettingValue<bool>(AppSettings.UserManagement.AllowSelfRegistration))
+            {
+                throw new UserFriendlyException(L("SelfUserRegistrationIsDisabledMessage_Detail"));
+            }
+        }
+
+        private bool UseCaptchaOnRegistration()
+        {
+            if (DebugHelper.IsDebug)
+            {
+                return false;
+            }
+
+            return SettingManager.GetSettingValue<bool>(AppSettings.UserManagement.UseCaptchaOnRegistration);
         }
 
         private async Task<Tenant> GetActiveTenantAsync()

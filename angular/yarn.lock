@@ -206,6 +206,10 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
+"@swimlane/ngx-datatable@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-13.0.1.tgz#6e949e19130b2054e2715d30d158751c4fbaa502"
+
 "@types/bootstrap@^3.3.33":
   version "3.3.37"
   resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-3.3.37.tgz#35a83106cb1131972977cf075a8d95cc05e895b0"
@@ -4332,9 +4336,9 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-ngx-bootstrap@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-2.0.2.tgz#6862b2ee4764bb6cfd34c66528873d0d050c2faa"
+ngx-bootstrap@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-2.0.5.tgz#83aab39d1e4fe811fad2b34f7927f9ce19d68daa"
 
 ngx-pagination@^3.0.3:
   version "3.0.3"
@@ -4540,9 +4544,9 @@ npm-run-path@^2.0.0:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
-nswag@^11.12.7:
-  version "11.15.3"
-  resolved "https://registry.yarnpkg.com/nswag/-/nswag-11.15.3.tgz#fb36f82a7ce8783d36b38ba109b8a1bf3498628d"
+nswag@^11.17.12:
+  version "11.17.12"
+  resolved "https://registry.yarnpkg.com/nswag/-/nswag-11.17.12.tgz#55608c9a0fd4a93fe6bd81eb8ee19a59055b8c76"
 
 nth-check@~1.0.1:
   version "1.0.1"

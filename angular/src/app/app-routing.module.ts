@@ -6,8 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { UsersComponent } from './users/users.component';
 import { TenantsComponent } from './tenants/tenants.component';
-import { RolesComponent } from "app/roles/roles.component";
-
+import { RolesComponent } from 'app/roles/roles.component';
+import { CayTrongComponent } from 'app/caytrongs/caytrong.component';
 @NgModule({
     imports: [
         RouterModule.forChild([
@@ -19,7 +19,8 @@ import { RolesComponent } from "app/roles/roles.component";
                     { path: 'users', component: UsersComponent, data: { permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
                     { path: 'roles', component: RolesComponent, data: { permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
                     { path: 'tenants', component: TenantsComponent, data: { permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
-                    { path: 'about', component: AboutComponent }
+                    { path: 'about', component: AboutComponent },
+                    { path: 'caytrongs', component: CayTrongComponent}
                 ]
             }
         ])

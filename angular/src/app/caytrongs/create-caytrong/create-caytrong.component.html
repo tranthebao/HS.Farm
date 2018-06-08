@@ -1,0 +1,48 @@
+<div bsModal #createCayTrongModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="createUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+        <div class="modal-dialog">
+    
+            <div #modalContent class="modal-content">
+    
+                <form *ngIf="active" #createCayTrongForm="ngForm" id="frm_create_caytrong" novalidate (ngSubmit)="save()">
+    
+                    <div class="modal-header">
+                        <button type="button" class="close" (click)="close()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">
+                            <span>{{l("CreateNewCayTrong")}}</span>
+                        </h4>
+                    </div>
+    
+                    <div class="modal-body">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input class="form-control" type="text" name="TenCay" [(ngModel)]="caytrong.tenCay" required maxlength="50" minlength="2">
+                                <label class="form-label">{{l("TenCay")}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" name="LoaiCay" class="form-control" [(ngModel)]="caytrong.loaiCay" required maxlength="50">
+                                <label class="form-label">{{l("LoaiCay")}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="number" name="MatDo" class="form-control" [(ngModel)]="caytrong.matDo" maxlength="1024">
+                                <label class="form-label">{{l("MatDo")}} ({{l("Optional")}})</label>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                        <button [disabled]="!createCayTrongForm.form.valid || saving" type="submit" class="btn btn-primary blue">{{l("Save")}}</button>
+                    </div>
+    
+                </form>
+    
+            </div>
+        </div>
+    </div>
+    

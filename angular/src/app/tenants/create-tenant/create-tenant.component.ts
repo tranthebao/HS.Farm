@@ -29,7 +29,7 @@ export class CreateTenantComponent extends AppComponentBase {
         this.active = true;
         this.modal.show();
         this.tenant = new CreateTenantDto();
-        this.tenant.init({isActive:true});
+        this.tenant.init({isActive: true});
     }
 
     onShown(): void {

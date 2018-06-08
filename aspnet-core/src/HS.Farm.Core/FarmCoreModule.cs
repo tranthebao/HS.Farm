@@ -28,7 +28,7 @@ namespace HS.Farm
             FarmLocalizationConfigurer.Configure(Configuration.Localization);
 
             // Enable this line to create a multi-tenant application.
-            Configuration.MultiTenancy.IsEnabled = false;// FarmConsts.MultiTenancyEnabled;
+            Configuration.MultiTenancy.IsEnabled =  FarmConsts.MultiTenancyEnabled;
 
             // Configure roles
             AppRoleConfig.Configure(Configuration.Modules.Zero().RoleManagement);

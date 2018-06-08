@@ -9,12 +9,18 @@ namespace HS.Farm.Editions
         public const string DefaultEditionName = "Standard";
 
         public EditionManager(
-            IRepository<Edition> editionRepository, 
+            IRepository<Edition> editionRepository,
             IAbpZeroFeatureValueStore featureValueStore)
             : base(
                 editionRepository,
-                featureValueStore)
+                featureValueStore
+            )
         {
+        }
+
+        public async Task<List<Edition>> GetAllAsync()
+        {
+            return await EditionRepository.GetAllListAsync();
         }
     }
 }

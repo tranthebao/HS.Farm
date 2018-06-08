@@ -13,14 +13,14 @@ namespace HS.Farm.Web
     {
         public static string CalculateContentRootFolder()
         {
-            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(FarmCoreModule).GetAssembly().Location);
+            var coreAssemblyDirectoryPath = Path.GetDirectoryName(typeof(AbpZeroTemplateCoreModule).GetAssembly().Location);
             if (coreAssemblyDirectoryPath == null)
             {
                 throw new Exception("Could not find location of HS.Farm.Core assembly!");
             }
 
             var directoryInfo = new DirectoryInfo(coreAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "HS.Farm.sln"))
+            while (!DirectoryContains(directoryInfo.FullName, "HS.Farm.Web.sln"))
             {
                 if (directoryInfo.Parent == null)
                 {
@@ -30,13 +30,13 @@ namespace HS.Farm.Web
                 directoryInfo = directoryInfo.Parent;
             }
 
-            var webMvcFolder = Path.Combine(directoryInfo.FullName, "src", "HS.Farm.Web.Mvc");
+            var webMvcFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}HS.Farm.Web.Mvc");
             if (Directory.Exists(webMvcFolder))
             {
                 return webMvcFolder;
             }
 
-            var webHostFolder = Path.Combine(directoryInfo.FullName, "src", "HS.Farm.Web.Host");
+            var webHostFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}HS.Farm.Web.Host");
             if (Directory.Exists(webHostFolder))
             {
                 return webHostFolder;

@@ -34,9 +34,9 @@ import { SideBarFooterComponent } from '@app/layout/sidebar-footer.component';
 import { RightSideBarComponent } from '@app/layout/right-sidebar.component';
 import { MaterialInput } from '@shared/directives/material-input.directive';
 
-import { CayTrongComponent } from '@app/Farm/caytrong/caytrongs.component';
-import { CreateCayTrongComponent } from './Farm/caytrong/create-caytrong/create-caytrong.component';
-import { EditCayTrongComponent } from './Farm/caytrong/edit-caytrong/edit-caytrong.component';
+import { CayTrongComponent } from '@app/caytrongs/caytrong.component';
+import { CreateCayTrongComponent } from '@app/caytrongs/create-caytrong/create-caytrong.component';
+import { EditCayTrongComponent } from '@app/caytrongs/edit-caytrong/edit-caytrong.component';
 
 @NgModule({
     declarations: [
@@ -44,14 +44,14 @@ import { EditCayTrongComponent } from './Farm/caytrong/edit-caytrong/edit-caytro
         HomeComponent,
         AboutComponent,
         TenantsComponent,
-		CreateTenantComponent,
-		EditTenantComponent,
+        CreateTenantComponent,
+        EditTenantComponent,
         UsersComponent,
-		CreateUserComponent,
-		EditUserComponent,
-      	RolesComponent,        
-		CreateRoleComponent,
-		EditRoleComponent,
+        CreateUserComponent,
+        EditUserComponent,
+        RolesComponent,
+        CreateRoleComponent,
+        EditRoleComponent,
         TopBarComponent,
         TopBarLanguageSwitchComponent,
         SideBarUserAreaComponent,
@@ -60,9 +60,9 @@ import { EditCayTrongComponent } from './Farm/caytrong/edit-caytrong/edit-caytro
         RightSideBarComponent,
 
         CayTrongComponent,
-		CreateCayTrongComponent,
-		EditCayTrongComponent,
-    
+        CreateCayTrongComponent,
+        EditCayTrongComponent,
+
     ],
     imports: [
         CommonModule,
