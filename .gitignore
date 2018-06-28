@@ -3,7 +3,7 @@
 # IDEs and editors
 .vs/
 obj/
-bin/
+bin/Debug
 aspnet-core/src/HS.Farm.Web.Host/App_Data/Logs/
 aspnet-core/src/HS.Farm.Web.Mvc/App_Data/Logs/
 aspnet-core/src/HS.Farm.Migrator/Logs/Logs.txt
