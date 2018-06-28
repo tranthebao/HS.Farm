@@ -8,7 +8,7 @@ using HS.Farm.Core;
 
 namespace HS.Farm.Application.Services
 {
-    //[AbpAuthorize]
+    [AbpAuthorize]
     //[AbpAllowAnonymous]
     public class CayTrongAppService : CrudAppService<CayTrong, CayTrongDto>, ICayTrongAppService
     {
